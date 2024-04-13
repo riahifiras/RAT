@@ -1,5 +1,3 @@
-# Builds resources for rat
-
 # Function to generate random text for directory name
 function random_text {
     $chars = ([char[]]([char]'A'..[char]'Z') + ([char[]]([char]'a'..[char]'z')))
@@ -7,11 +5,19 @@ function random_text {
     return -join $randomChars
 }
 
-# Change directory to the temporary folder
-Set-Location $env:temp
+# Variables
+$wd = random_text
+$path = Join-Path -Path $env:temp -ChildPath $wd
+Write-Output $path
 
-# Generate a random directory name
-$directory_name = random_text
+# Create directory if it doesn't exist
+if (-not (Test-Path $path)) {
+    New-Item -Path $path -ItemType Directory
+}
 
-# Create the directory
-New-Item -ItemType Directory -Name $directory_name
+# Change directory
+Set-Location $path
+
+# Now you can proceed with your script
+Write-Output "" > poc.txt
+Set-Location C:\Users\user\OneDrive\Bureau\rat\files

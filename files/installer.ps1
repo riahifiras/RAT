@@ -50,7 +50,7 @@ if ($ip) {
 $smtpServer = "smtp.gmail.com"
 $smtpPort = 587
 $username = "firas.riahi@ensi-uma.tn"
-$password = "xzvp wqgl grtq byrk" # Or your app password if you have two-factor authentication enabled
+$password = "ijrw kynq kdsm tjki " # Or your app password if you have two-factor authentication enabled
 
 # Create the email object
 $email = New-Object System.Net.Mail.MailMessage

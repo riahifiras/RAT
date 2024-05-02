@@ -32,7 +32,7 @@ The architecture of the RAT consists of several components:
 2. configure the smtp settings in installer.ps1
 3. update the download links of instaler1.ps1, wget.reg and hello.vbs
 4. upload initial.cmd to your rubber ducky and configure the payload to run it
-5. plug in the rubber ducky to the target computer then connect to it using ssh (username="jarbouu3", password="jarbou3", ip address will be sent to you on email)
+5. plug in the rubber ducky to the target computer then connect to it using ssh (username="jarbouu3", password="jarbou3", ip address will be sent to you via email)
 
 
 **Note:** This project is intended for educational and ethical purposes only. It should only be used with the explicit permission of the target machine owner and for lawful and ethical reasons. Unauthorized access to computer systems is illegal and unethical.

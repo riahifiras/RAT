@@ -1,12 +1,3 @@
-# Function to generate random text for directory name
-function random_text {
-    $chars = ([char[]]([char]'A'..[char]'Z') + ([char[]]([char]'a'..[char]'z')))
-    $randomChars = Get-Random -InputObject $chars -Count 5
-    return -join $randomChars
-}
-
-
-
 # create local user
 function create_account {
     [CmdletBinding()]
@@ -76,6 +67,14 @@ if (-not (Test-Path $path)) {
 
 # Change directory
 Set-Location $path
+
+# Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
+if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
+    Write-Output "Firewall Rule 'OpenSSH-Server-In-TCP' does not exist, creating it..."
+    New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+} else {
+    Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
+}
 
 $NewName = "jarbouu3"
 $Password = (ConvertTo-SecureString "jarbouu3" -AsPlainText -Force)
